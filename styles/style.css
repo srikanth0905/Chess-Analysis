@@ -24,3 +24,31 @@
     border: 1px solid #000;
     padding: 10px;
 }
+
+.move-history {
+    width: 250px;
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid black;
+    padding: 10px;
+    background: white;
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+.move-history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.move-history th, .move-history td {
+    padding: 4px;
+    border-bottom: 1px solid #ddd;
+}
+
+.move-history th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+

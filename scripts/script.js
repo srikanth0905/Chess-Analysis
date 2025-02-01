@@ -37,11 +37,48 @@ function updateBoard() {
     updateMoveHistory();
 }
 
-// Update the move history
+// Initialize move history container
+const moveHistoryContainer = document.getElementById("moveHistory");
+
 function updateMoveHistory() {
-    const history = chess.history();
-    document.getElementById("moveHistory").innerText = history.join("\n");
+    const moves = chess.history({ verbose: true });
+    let formattedMoves = "<strong>Scoresheet</strong>";
+    
+    formattedMoves += `<table style="width:100%; border-collapse: collapse;">
+                            <tr>
+                                <th style="text-align: left;">#</th>
+                                <th style="text-align: left;">White</th>
+                                <th style="text-align: left;">Black</th>
+                            </tr>`;
+
+    for (let i = 0; i < moves.length; i += 2) {
+        let moveNumber = Math.floor(i / 2) + 1;
+        let whiteMove = moves[i] ? moves[i].san : "";
+        let blackMove = moves[i + 1] ? moves[i + 1].san : "";
+
+        formattedMoves += `<tr>
+                              <td>${moveNumber}.</td>
+                              <td>${whiteMove}</td>
+                              <td>${blackMove}</td>
+                           </tr>`;
+    }
+
+    formattedMoves += "</table>";
+    document.getElementById("moveHistory").innerHTML = formattedMoves;
 }
+
+
+// Modify existing onDrop function to include move history update
+function handleMove(source, target) {
+    let move = chess.move({ from: source, to: target });
+
+    if (move === null) return "snapback"; // Invalid move
+
+    board.position(chess.fen());
+    updateMoveHistory();
+    analyzePosition();
+}
+
 
 // Analyze the current position using Stockfish
 function analyzePosition() {
