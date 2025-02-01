@@ -1,17 +1,5 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-#board {
-    width: 400px;
-    height: 500px;
-    margin: 20px;
-}
-
 #moveHistory {
+    align-items: baseline;
     width: 200px;
     height: 500px;
     margin: 20px;
@@ -20,7 +8,15 @@ body {
     padding: 10px;
 }
 
+#board {
+    align-self: center;
+    width: 400px;
+    height: 500px;
+    margin: 20px;
+}
+
 #stockfishOutput {
+    align-self: auto;
     width: 200px;
     height: 500px;
     margin: 20px;

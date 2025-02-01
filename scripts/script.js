@@ -1,5 +1,5 @@
 // Initialize Stockfish
-const stockfish = new Worker("stockfish.js");
+const stockfish = new Worker("scripts/stockfish.js");
 
 stockfish.onmessage = function(event) {
     let data = event.data;
